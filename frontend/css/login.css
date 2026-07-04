@@ -1,0 +1,78 @@
+/* ============================================================
+   login.css — Auth pages (login + register)
+   ============================================================ */
+
+.auth-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px;
+  border-radius: var(--radius-lg);
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.auth-title {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.auth-footer a:hover { text-decoration: underline; }
+
+.auth-error-banner {
+  background: rgba(255, 92, 124, 0.1);
+  border: 1px solid rgba(255, 92, 124, 0.3);
+  color: var(--danger);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: 16px;
+  display: none;
+}
+.auth-error-banner.show { display: block; }
+
+.auth-submit { width: 100%; margin-top: 6px; }
+
+.password-strength {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--border);
+  margin-top: 6px;
+  overflow: hidden;
+}
+.password-strength-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  transition: width 0.25s var(--ease), background 0.25s var(--ease);
+}

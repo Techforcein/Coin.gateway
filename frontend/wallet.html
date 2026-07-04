@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet · CoinVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/wallet.css" />
+  <link rel="stylesheet" href="css/animation.css" />
+</head>
+<body>
+  <div class="bg-decor"></div>
+  <div class="particles"></div>
+  <div class="sidebar-backdrop"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CV</div>
+        <div class="brand-name">CoinVault</div>
+      </div>
+      <a href="wallet.html" class="nav-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 11h2"/><path d="M2 10h20"/></svg>
+        Wallet
+      </a>
+      <a href="marketplace.html" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Marketplace
+      </a>
+      <a href="history.html" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+        History
+      </a>
+      <a href="wallet-profile.html" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        Profile
+      </a>
+      <div class="nav-spacer"></div>
+      <a href="#" class="nav-link logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        Logout
+      </a>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="flex gap-12" style="align-items:center;">
+          <button class="mobile-menu-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+          <div class="topbar-title">Wallet</div>
+        </div>
+        <div class="topbar-user">
+          <span class="text-muted mono" id="topbarUsername" style="font-size:13.5px;"></span>
+          <div class="avatar" id="topbarAvatar">?</div>
+        </div>
+      </header>
+
+      <main class="content page-transition">
+        <!-- Hero balance card -->
+        <div class="glass-card hero-card">
+          <div class="hero-left">
+            <div class="hero-label">Current Balance</div>
+            <div class="hero-balance">
+              <div class="coin-icon">¢</div>
+              <span class="hero-balance-number" id="balanceNumber">0</span>
+              <span class="hero-balance-suffix">credits</span>
+            </div>
+            <div class="hero-meta">
+              <span id="metaReceived">+0 received</span>
+              <span id="metaSpent">−0 spent</span>
+            </div>
+          </div>
+          <div class="hero-right">
+            <!-- NOTE: Coins can only be added by an Admin. No top-up button here. -->
+            <a href="marketplace.html" class="btn btn-primary" style="text-decoration:none;">🛒 Marketplace</a>
+            <a href="history.html" class="btn btn-ghost" style="text-decoration:none;">View History</a>
+          </div>
+        </div>
+
+        <!-- Info notice -->
+        <div class="glass-card" style="padding:14px 22px;margin-bottom:20px;border-color:rgba(79,140,255,0.3);display:flex;align-items:center;gap:12px;">
+          <span style="font-size:18px;">ℹ️</span>
+          <span class="text-muted" style="font-size:13.5px;">Coins are granted by an Administrator. Visit the <a href="marketplace.html" style="color:var(--accent);font-weight:600;">Marketplace</a> to spend them on digital codes.</span>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="quick-actions stagger">
+          <div class="glass-card quick-action slide-up" id="qaMarket">
+            <div class="quick-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+            <div class="quick-action-label">Marketplace</div>
+          </div>
+          <div class="glass-card quick-action slide-up" id="qaMyPurchases">
+            <div class="quick-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+            <div class="quick-action-label">My Codes</div>
+          </div>
+          <div class="glass-card quick-action slide-up" id="qaHistory">
+            <div class="quick-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
+            <div class="quick-action-label">History</div>
+          </div>
+          <div class="glass-card quick-action slide-up" id="qaRefresh">
+            <div class="quick-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"/></svg></div>
+            <div class="quick-action-label">Refresh</div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid stagger">
+          <div class="glass-card stat-card slide-up">
+            <div class="stat-label">Total Received</div>
+            <div class="stat-value up" id="statReceived">0</div>
+          </div>
+          <div class="glass-card stat-card slide-up">
+            <div class="stat-label">Total Spent</div>
+            <div class="stat-value down" id="statSpent">0</div>
+          </div>
+          <div class="glass-card stat-card slide-up">
+            <div class="stat-label">Current Balance</div>
+            <div class="stat-value" id="statBalance">0</div>
+          </div>
+          <div class="glass-card stat-card slide-up">
+            <div class="stat-label">Transactions</div>
+            <div class="stat-value" id="statCount">0</div>
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="glass-card" style="padding:26px 28px;">
+          <div class="flex" style="justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <h3 style="font-size:16px;">Recent Activity</h3>
+            <a href="history.html" class="text-muted" style="font-size:13px;font-weight:600;">View all →</a>
+          </div>
+          <div class="tx-preview" id="txPreview"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/wallet.js"></script>
+</body>
+</html>

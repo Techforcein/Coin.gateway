@@ -1,0 +1,32 @@
+version: "3.8"
+
+# Optional local MySQL setup. If you already have a MySQL server
+# (local install, cloud database, etc.) you do NOT need this file -
+# just point backend/.env at it instead.
+#
+# Usage:
+#   docker compose up -d
+# This starts a MySQL 8 instance on localhost:3306 and automatically
+# runs database/wallet.sql on first startup to create the schema.
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: wallet-system-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wallet_system
+    ports:
+      - "3306:3306"
+    volumes:
+      - wallet_mysql_data:/var/lib/mysql
+      - ./database/wallet.sql:/docker-entrypoint-initdb.d/01-wallet.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  wallet_mysql_data:

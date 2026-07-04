@@ -1,0 +1,165 @@
+/* ============================================================
+   dashboard.css — History table, admin panel, profile sections
+   ============================================================ */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.page-header h1 { font-size: 22px; }
+
+.search-bar {
+  position: relative;
+  width: 280px;
+}
+.search-bar input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 13.5px;
+}
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79,140,255,0.15);
+}
+.search-bar svg {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  color: var(--text-faint);
+}
+
+.table-card { padding: 0; overflow: hidden; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 16px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+
+.data-table td {
+  padding: 16px 20px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table tbody tr {
+  transition: background 0.15s var(--ease);
+}
+.data-table tbody tr:hover { background: rgba(255,255,255,0.025); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.table-empty {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+.table-empty-icon { font-size: 32px; margin-bottom: 10px; opacity: 0.6; }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.pagination-info { font-size: 13px; color: var(--text-muted); }
+.pagination-controls { display: flex; gap: 8px; }
+
+.page-btn {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s;
+}
+.page-btn:hover:not(:disabled) { background: rgba(255,255,255,0.09); }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-btn.active { background: var(--primary); border-color: var(--primary); color: #061021; }
+
+/* Profile page */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}
+.profile-card { padding: 30px; text-align: center; }
+.profile-avatar {
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 700;
+  color: #061021;
+  box-shadow: var(--glow-primary);
+}
+.profile-username { font-size: 18px; margin-bottom: 4px; }
+.profile-email { color: var(--text-muted); font-size: 13.5px; }
+.profile-role-badge { margin-top: 14px; display: inline-flex; }
+
+.detail-card { padding: 28px; }
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-label { color: var(--text-muted); font-size: 13.5px; }
+.detail-value { font-weight: 600; font-size: 13.5px; }
+
+/* Admin panel specific */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.user-row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.notice-form { padding: 24px; margin-bottom: 24px; }
+.notice-list { display: flex; flex-direction: column; gap: 12px; }
+.notice-item { padding: 18px 22px; }
+.notice-item-title { font-weight: 600; margin-bottom: 6px; }
+.notice-item-meta { font-size: 12px; color: var(--text-faint); margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .profile-grid { grid-template-columns: 1fr; }
+  .admin-stats-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .search-bar { width: 100%; }
+  .page-header { flex-direction: column; align-items: stretch; }
+}

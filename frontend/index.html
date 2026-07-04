@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoinVault</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-decor"></div>
+  <script src="js/api.js"></script>
+  <script>
+    // Redirect after DOM + api.js are ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!Auth.isLoggedIn()) {
+        window.location.replace('login.html');
+        return;
+      }
+      // Re-fetch profile to get the real, current role from the server
+      try {
+        const res = await Api.get('/profile');
+        Auth.setUser(res.user);
+        window.location.replace(res.user.role === 'admin' ? 'admin.html' : 'wallet.html');
+      } catch (e) {
+        Auth.clear();
+        window.location.replace('login.html');
+      }
+    });
+  </script>
+</body>
+</html>
