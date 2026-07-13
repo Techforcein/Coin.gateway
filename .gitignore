@@ -1,6 +1,31 @@
+# Dependencies
 node_modules/
+
+# Environment files
 .env
+.env.*
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System
 .DS_Store
+Thumbs.db
+
+# Build folders
 dist/
+build/
 coverage/
+
+# VS Code (optional)
+.vscode/
+
+# Temporary files
+*.tmp
+
+# Runtime uploads (if they should not be in Git)
+backend/uploads/*
+!backend/uploads/.gitkeep
